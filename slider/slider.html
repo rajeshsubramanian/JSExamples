@@ -34,16 +34,24 @@
 			#just-a-slider {
 				position: absolute;
 				width: 100%;
-				top: 50%;
-				height: 50px;
+				height: 100%;
+				top: 0;	
 			}
 			.dragdealer {
+				overflow: hidden;
 				background-color: transparent;
 			}
 			#just-a-slider .handle {
-				width: 67px;
-				height: 50px;
-				background-color: #f00;
+				height: 100%;
+				width: 0.5em;
+				background: url(slider-background.png) repeat-y 50% 0;
+				background-size: 0.5em;
+				background-color: transparent;
+			}
+			#just-a-slider .handle img {
+				position: absolute;
+				top: 50%;
+				margin-left: -30px;
 			}
 			@media (min-width: 32em) {
 			}
@@ -57,7 +65,7 @@
 			</div>
 			<div id="just-a-slider" class="dragdealer">
 				<div class="handle">
-					<span><img src="slider-control.png" /></span>
+					<img src="slider-control.png" />
 				</div>
 			</div>
 		</div>
