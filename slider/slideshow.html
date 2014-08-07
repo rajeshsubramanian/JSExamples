@@ -6,41 +6,120 @@
 		<script type="text/javascript" src="scripts/jssor.core.js"></script>
 	    <script type="text/javascript" src="scripts/jssor.utils.js"></script>
 	    <script type="text/javascript" src="scripts/jssor.slider.js"></script>
+	    <script type="text/javascript" src="dragdealer.min.js"></script>
+	    <link rel="stylesheet" type="text/css" href="http://skidding.github.io/dragdealer/demo/style/demos.css">
+		<link rel="stylesheet" type="text/css" href="http://skidding.github.io/dragdealer/src/dragdealer.css">
+		<style type="text/css">
+			.after {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				background-image: url(after_large.png);
+				background-size: cover;
+			}
+			.before {
+				position: absolute;
+				width: 50%;
+				height: 100%;
+				overflow: hidden;
+				background-image: url(before_large.png);
+				background-size: cover;
+			}
+			#just-a-slider,
+			#just-a-slider-2 {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;	
+			}
+			.dragdealer {
+				overflow: hidden;
+				background-color: transparent;
+			}
+			#just-a-slider .handle,
+			#just-a-slider-2 .handle {
+				height: 100%;
+				width: 0.5em;
+				background: url(slider-background.png) repeat-y 50% 0;
+				background-size: 0.5em;
+				background-color: transparent;
+			}
+			#just-a-slider .handle img,
+			#just-a-slider-2 .handle img {
+				position: absolute;
+				top: 50%;
+				margin-left: -30px;
+			}
+			@media (min-width: 32em) {
+			}
+			#slider1_container {
+				position: relative;
+				top: 0px;
+				left: 0px; 
+				width: 1060px;
+				height: 677px; 
+			}
+			#slider1_container .slides {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 1060px;
+				height: 677px;
+				overflow: hidden;
+			}
+			.container {
+				position: relative;
+				width: 100vw;
+				height: 75vw;
+				overflow: visible;
+				max-width: 1060px;
+				max-height: 677px;
+				margin: 1em auto;
+				border: 1px solid #ccc;
+			}
+		</style>
 	</head>
 	<body>
-	<script>
-		jssor_slider1_starter = function (containerId) {
-			var options = {
-				$DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
-				$ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
-					$Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-					$ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-					$AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-					$Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
-				}
-			};
-
-			var jssor_slider1 = new $JssorSlider$(containerId, options);
-		};
-	</script>	
-		<div class="container">
-			<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; ">
-
-				<!-- Slides Container -->
-				<div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
-					<div><img u="image" src="img/photography/002.jpg" /></div>
-					<div><img u="image" src="img/photography/003.jpg" /></div>
-					<div><img u="image" src="img/photography/004.jpg" /></div>
-					<div><img u="image" src="img/photography/005.jpg" /></div>
-					<div><img u="image" src="img/photography/006.jpg" /></div>
-					<div><img u="image" src="img/photography/007.jpg" /></div>
-					<div><img u="image" src="img/photography/008.jpg" /></div>
+		<div id="slider1_container">
+			<!-- Slides Container -->
+			<div u="slides" class="slides">
+				<div class="container">
+					<div class="after">
+						<div class="before"></div>
+					</div>
+					<div id="just-a-slider-1" class="dragdealer">
+						<div class="handle">
+							<img src="slider-control.png" />
+						</div>
+					</div>
 				</div>
-				<!-- Arrow Left -->
-				<span u="arrowleft" class="jssora03l" style="width: 55px; height: 55px; top: 123px; left: 8px;"></span>
-				<!-- Arrow Right -->
-				<span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 123px; right: 8px"></span>
+				<div class="container" id="slide-2">
+					<div class="after">
+						<div class="before"></div>
+					</div>
+					<div id="just-a-slider-2" class="dragdealer">
+						<div class="handle">
+							<img src="slider-control.png" />
+						</div>
+					</div>
+				</div>
+				<div><img u="image" src="img/photography/003.jpg" /></div>
+				<div><img u="image" src="img/photography/003.jpg" /></div>
+				<div><img u="image" src="img/photography/004.jpg" /></div>
+				<div><img u="image" src="img/photography/005.jpg" /></div>
+				<div><img u="image" src="img/photography/006.jpg" /></div>
+				<div><img u="image" src="img/photography/007.jpg" /></div>
+				<div><img u="image" src="img/photography/008.jpg" /></div>
 			</div>
+			<div id="just-a-slider" class="dragdealer">
+				<div class="handle">
+					<img src="slider-control.png" />
+				</div>
+			</div>
+			<!-- Arrow Left -->
+			<span u="arrowleft" class="jssora03l" style="width: 55px; height: 55px; top: 123px; left: 8px;"></span>
+			<!-- Arrow Right -->
+			<span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 123px; right: 8px"></span>
 		</div>
 		<style>
 			/* jssor slider arrow navigator skin 03 css */
@@ -67,7 +146,63 @@
 			.jssora03ldn { background-position: -243px -33px; }
 			.jssora03rdn { background-position: -303px -33px; }
 		</style>
-		<script>
+		<script type="text/javascript">
+			var dragdealer1 = new Dragdealer('just-a-slider', {
+				x: 0.5,
+				animationCallback: function(x, y) {
+					var beforeElement = document.getElementsByClassName('before')[0];
+					beforeElement.style.width = Math.round(x * 100) + '%';
+					//console.log(Math.round(x * 100));
+				}
+			});
+			new Dragdealer('just-a-slider-2', {
+				x: 0.5,
+				animationCallback: function(x, y) {
+					var beforeElement = document.getElementById('slide-2').getElementsByClassName('before')[0];
+					beforeElement.style.width = Math.round(x * 100) + '%';
+					//console.log(Math.round(x * 100));
+				}
+			});
+		</script>
+		<script type="text/javascript">
+	        /*http://www.jssor.com/index.html*/
+	        jssor_slider1_starter = function (containerId) {
+	            var options = {
+	                $FillMode: 2,
+	                $Loop: 0,
+	                $DragOrientation: 0,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+	                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+	                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+	                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+	                    $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+	                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+	                }
+	            };
+	            var jssor_slider1 = new $JssorSlider$(containerId, options);
+
+	            //responsive code begin
+	            //you can remove responsive code if you don't want the slider scales while window resizes
+	            function ScaleSlider() {
+	                var bodyWidth = document.body.clientWidth;
+	                if (bodyWidth) {
+	                    var parentWidth = document.getElementById('slider1_container').parentNode.offsetWidth;
+	                    //console.log(parentWidth);
+	                    jssor_slider1.$SetScaleWidth(parentWidth);
+	                    dragdealer1.reflow();
+	                }
+	                else
+	                    $JssorUtils$.$Delay(ScaleSlider, 30);
+	            }
+
+	            ScaleSlider();
+	            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
+
+	            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+	                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
+	            }
+	        };
+	    </script>
+	    <script>
 			jssor_slider1_starter('slider1_container');
 		</script>
 	</body>

@@ -8,11 +8,9 @@
 		<style type="text/css">
 			.container {
 				position: relative;
-				width: 64vw;
-				height: 48vw;
+				width: 100vw;
+				height: 75vw;
 				overflow: visible;
-				max-width: 640px;
-				max-height: 480px;
 				margin: 1em auto;
 				border: 1px solid #ccc;
 			}
@@ -31,7 +29,8 @@
 				background-image: url(before.png);
 				background-size: cover;
 			}
-			#just-a-slider {
+			#just-a-slider,
+			#just-a-slider-2 {
 				position: absolute;
 				width: 100%;
 				height: 100%;
@@ -41,14 +40,16 @@
 				overflow: hidden;
 				background-color: transparent;
 			}
-			#just-a-slider .handle {
+			#just-a-slider .handle,
+			#just-a-slider-2 .handle {
 				height: 100%;
 				width: 0.5em;
 				background: url(slider-background.png) repeat-y 50% 0;
 				background-size: 0.5em;
 				background-color: transparent;
 			}
-			#just-a-slider .handle img {
+			#just-a-slider .handle img,
+			#just-a-slider-2 .handle img {
 				position: absolute;
 				top: 50%;
 				margin-left: -30px;
@@ -69,11 +70,29 @@
 				</div>
 			</div>
 		</div>
+		<div class="container" id="slide-2">
+			<div class="after">
+				<div class="before"></div>
+			</div>
+			<div id="just-a-slider-2" class="dragdealer">
+				<div class="handle">
+					<img src="slider-control.png" />
+				</div>
+			</div>
+		</div>
 		<script type="text/javascript">
 			new Dragdealer('just-a-slider', {
 				x: 0.5,
 				animationCallback: function(x, y) {
 					var beforeElement = document.getElementsByClassName('before')[0];
+					beforeElement.style.width = Math.round(x * 100) + '%';
+					console.log(Math.round(x * 100));
+				}
+			});
+			new Dragdealer('just-a-slider-2', {
+				x: 0.5,
+				animationCallback: function(x, y) {
+					var beforeElement = document.getElementById('slide-2').getElementsByClassName('before')[0];
 					beforeElement.style.width = Math.round(x * 100) + '%';
 					console.log(Math.round(x * 100));
 				}

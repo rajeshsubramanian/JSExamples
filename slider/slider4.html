@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="http://skidding.github.io/dragdealer/demo/style/demos.css">
+	<link rel="stylesheet" type="text/css" href="http://skidding.github.io/dragdealer/src/dragdealer.css">
+    <link href="ninja-slider.css" rel="stylesheet" type="text/css" />
+    <style>
+    	.container {
+    		position: relative;
+    		width: 100%;
+    		background-color: #f00;
+			overflow: visible;
+    	}
+    	.before {
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 50%;
+    		height: 100%;
+    		background-image: url(before_large.png);
+    		background-position: 0 0;
+    		background-size: cover;
+    	}
+    	.after > img {
+    		width: 100%;
+    		vertical-align: top;
+    	}
+    	#slider-1,
+    	#slider-2 {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;	
+		}
+		.dragdealer {
+			overflow: hidden;
+			background-color: transparent;
+		}
+		#slider-1 .handle,
+		#slider-2 .handle {
+			height: 100%;
+			width: 0.5em;
+			background: url(slider-background.png) repeat-y 50% 0;
+			background-size: 0.5em;
+			background-color: transparent;
+		}
+		#slider-1 .handle img,
+		#slider-2 .handle img {
+			position: absolute;
+			top: 50%;
+			margin-left: -30px;
+		}
+    </style>
+    <script type="text/javascript" src="dragdealer.min.js"></script>
+    <script src="scripts/ninja-slider.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id='ninja-slider'>
+        <ul>
+            <li>
+				<div id="slide-1" class="container">
+					<div class="after"><img src="after_large.png" /></div>
+					<div class="before"></div>
+					<div id="slider-1" class="dragdealer">
+						<div class="handle">
+							<img src="slider-control.png" />
+						</div>
+					</div>
+				</div>
+            </li>
+            <li>
+				<div id="slide-2" class="container">
+					<div class="after"><img src="after_large.png" /></div>
+					<div class="before"></div>
+					<div id="slider-2" class="dragdealer">
+						<div class="handle">
+							<img src="slider-control.png" />
+						</div>
+					</div>
+				</div>
+            </li>
+        </ul>
+    </div>
+	<script type="text/javascript">
+		new Dragdealer('slider-1', {
+			x: 0.5,
+			animationCallback: function(x, y) {
+				var beforeElement = document.getElementById('slide-1').getElementsByClassName('before')[0];
+				beforeElement.style.width = Math.round(x * 100) + '%';
+			}
+		});
+		new Dragdealer('slider-2', {
+			x: 0.5,
+			animationCallback: function(x, y) {
+				var beforeElement = document.getElementById('slide-2').getElementsByClassName('before')[0];
+				beforeElement.style.width = Math.round(x * 100) + '%';
+			}
+		});
+	</script>
+</body>
+</html>

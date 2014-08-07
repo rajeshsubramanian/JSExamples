@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="http://skidding.github.io/dragdealer/demo/style/demos.css">
+	<link rel="stylesheet" type="text/css" href="http://skidding.github.io/dragdealer/src/dragdealer.css">
+    <style>
+    	.container {
+    		position: relative;
+    		width: 100%;
+    		background-color: #f00;
+			overflow: visible;
+    	}
+    	.before {
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 50%;
+    		height: 100%;
+    		background-image: url(before_large.png);
+    		background-position: 0 0;
+    		background-size: cover;
+    	}
+    	.after > img {
+    		width: 100%;
+    		vertical-align: top;
+    	}
+    	#just-a-slider {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;	
+		}
+		.dragdealer {
+			overflow: hidden;
+			background-color: transparent;
+		}
+		#just-a-slider .handle {
+			height: 100%;
+			width: 0.5em;
+			background: url(slider-background.png) repeat-y 50% 0;
+			background-size: 0.5em;
+			background-color: transparent;
+		}
+		#just-a-slider .handle img {
+			position: absolute;
+			top: 50%;
+			margin-left: -30px;
+		}
+    </style>
+    <script type="text/javascript" src="dragdealer.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="after"><img src="after_large.png" /></div>
+		<div class="before"></div>
+		<div id="just-a-slider" class="dragdealer">
+			<div class="handle">
+				<img src="slider-control.png" />
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		new Dragdealer('just-a-slider', {
+			x: 0.5,
+			animationCallback: function(x, y) {
+				var beforeElement = document.getElementsByClassName('before')[0];
+				beforeElement.style.width = Math.round(x * 100) + '%';
+			}
+		});
+	</script>
+</body>
+</html>
